@@ -1,0 +1,157 @@
+/*base styles*/
+*{box-sizing: border-box;}
+
+html{
+  font-size:9px;
+}
+
+body{
+  font-family: sans-serif;
+  background: #eee;
+  display: grid;
+  padding: 0;
+  margin: 0;
+  grid-template-rows: 5rem 1fr;
+  height:100vh;
+}
+
+header{
+  grid-row: 1;
+  text-align: center;
+  padding:0;
+  background: #444; 
+}
+
+main{
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  height:100%;
+  padding:1rem 0;   
+}
+
+h1{
+  font-weight: bold;
+  font-size:1.5rem;
+  color:#eee;
+}
+
+.undisplay{
+  display: none;
+}
+
+
+.btn{
+  background: #246;
+  padding:.5rem;
+  color:#fff;
+  font-weight: bold;
+  border:none;
+  border-radius: 4px;
+  margin: .8rem;
+}
+.btn:hover{
+ box-shadow: 2px 3px 3px rgba(0,0,0,.5);  
+ color:#e55;
+}
+
+
+.simon{
+  display: grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
+  grid-gap: 1rem;
+  position: relative;
+  background: #444;
+  width:18rem;
+  height:18rem;
+  border: .5rem solid #444;
+  border-radius: 50%;
+  overflow: hidden;
+  transition:transform .7s;
+}
+
+
+.simon::after{
+  content:'';
+  position: absolute;
+  left:calc(50% - 4rem);
+  top:calc(50% - 4rem);
+  width:8rem;
+  height: 8rem;
+  background: #444;
+  border-radius: 50%;
+}
+
+
+.simon__part{
+  width: 8rem;
+  height: 8rem;
+  border-radius: .3rem;  
+  border:none;
+}
+
+.simon__part:active{
+  -webkit-filter: brightness(170%);
+  filter: brightness(170%);
+}
+
+.part--a{
+  grid-column: 1;
+  grid-row: 1;
+  background: #494;
+}
+
+.part--b{
+  grid-column: 2;
+  grid-row: 1;
+  background: #a44;
+}
+
+.part--c{
+  grid-column: 2;
+  grid-row: 2;
+  background: #44a;
+}
+
+.part--d{
+  grid-column: 1;
+  grid-row: 2;
+  background: #cc5;
+}
+
+.brightness{
+  -webkit-filter: brightness(170%);
+  filter: brightness(170%);
+}
+
+.messageContainer{
+  display: block;
+  width: 30rem;
+  background: #eee;
+  color: #222;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.rotate{
+  transform: rotate(360deg);
+}
+
+/* Media queries */
+@media screen and (min-width: 280px){
+html{font-size: 11px;}
+}
+
+
+
+@media screen and (min-width: 550px){
+html{font-size: 14px;}
+}
+
+
+@media screen and (min-width: 780px){
+html{font-size: 16px;}
+}
