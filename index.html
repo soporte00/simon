@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="base.css" />
 	<link rel="stylesheet" href="style.css" />
 	<title>Simon</title>
 </head>
@@ -11,17 +12,24 @@
 	<h1>Simon Dice...</h1>
 </header>
 <main id='main'>
-
+	<span id='mssg' class='messageContainer'></span>
 	<div class='simon' id='simon'>
 		<button id='part-1' class='simon__part part--a'></button>
 		<button id='part-2' class='simon__part part--b'></button>
 		<button id='part-3' class='simon__part part--c'></button>
 		<button id='part-4' class='simon__part part--d'></button>
+		<span id='points' class='points'></span>
 	</div>
-	<div id='mssg' class='messageContainer'></div>
-	<button id='play' class='btn'>Jugar</button>
 
+	<button id='play' class='btn'>Jugar</button>
 </main>
+
+<aside> Posiciones:
+	<div class='score' id='score'></div>
+</aside>
+
+<script src="modal.js"></script>
+<script src="storage.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
