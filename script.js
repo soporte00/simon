@@ -69,12 +69,11 @@ const nextStage = ()=>{
 	if(mode == 0){
 		mode = 1
 		simonSay.push(rand())
-		simonSay.push(rand())
 		showLights()
 		return
 	}
 
-	let point = parseInt(simonSay.length - 1)
+	let point = simonSay.length
 
 	setScore(point)
 
@@ -97,8 +96,7 @@ const setScore = (set = null)=>{
 		myScore[current] = 0
 		storage(myScore)	
 	}
-
-	if(!data[current]){
+	else if(data[current] == undefined){
 		data[current]= 0
 		storage(data)	
 	} 	
