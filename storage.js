@@ -20,16 +20,20 @@ function setSessionStorage(id,data){
 function storage(parameter=null){
 	if(typeof(Storage) !== 'undefined'){
 
-		const data = JSON.parse( localStorage.getItem('score') ) ;
-		
 		if(parameter !== null){
-			if(localStorage.setItem('score', JSON.stringify(parameter)) == false){
-				console.error('No se pudo guardar en localStorage')
-				return false
-			}
+			localStorage.setItem('score', JSON.stringify(parameter));
+			return
 		}
 
-		return data;
+
+		let data = localStorage.getItem('score');
+
+		if(data !== null){
+			return JSON.parse(data);
+		}
+
+
+		return false;
 	} 
 
 	console.error('el localStorage no se encuentra habilitado')

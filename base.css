@@ -2,7 +2,7 @@
 *{box-sizing: border-box;}
 
 html{
-  font-size:9px;
+  font-size:10px;
 }
 
 body{
@@ -55,16 +55,16 @@ h1{
 
 
 
-/* Media queries */
+/* Media queries *//*
 @media screen and (min-width: 280px){
-  html{font-size: 11px;}
+  html{font-size: 10px;}
 }
-
-@media screen and (min-width: 550px){
-  html{font-size: 14px;}
+*/
+@media screen and (min-width: 600px){
+  html{font-size: 13px;}
 
   body{
-    grid-template-columns: 1fr 40%;
+    grid-template-columns: 1fr 30%;
     grid-template-rows: 5rem 1fr;
   }
 

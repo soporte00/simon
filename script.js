@@ -3,6 +3,7 @@ const mssg = document.getElementById('mssg')
 const play = document.getElementById('play')
 const score = document.getElementById('score')
 const points = document.getElementById('points')
+const user = document.getElementById('userDiv')
 
 let simonSay = []
 let userSay = []
@@ -73,7 +74,7 @@ const nextStage = ()=>{
 		return
 	}
 
-	let point = parseInt((simonSay.length -1) * (600 / timer) + 1)
+	let point = parseInt(simonSay.length - 1)
 
 	setScore(point)
 
@@ -95,12 +96,12 @@ const setScore = (set = null)=>{
 		let myScore = {}
 		myScore[current] = 0
 		storage(myScore)	
-	} 
+	}
 
 	if(!data[current]){
 		data[current]= 0
 		storage(data)	
-	} 
+	} 	
 
 	if(set !== null && data[current] < set){ 
 		data[current] = set
@@ -109,19 +110,23 @@ const setScore = (set = null)=>{
 
 	score.innerHTML = ''
 	
+
+	// order score
 	n = 0
 	for(let dt in data){
-			k = ''
-			v = ''
-			for(let d in data){
-				if(n == 0 ||( v < data[d] && data[d] !== undefined ) ){ v = data[d]; k = d; n++}
-			}
+		k = ''
+		v = ''
+		for(let d in data){
+			if(n == 0 ||( v < data[d] && data[d] !== undefined ) ){ v = data[d]; k = d; n++}
+		}
 
-			data[k] = undefined
+		data[k] = undefined
 
-			score.innerHTML += `<span class='score__row'>${k} - ${v}</span>`
+		if(v > 0){ score.innerHTML += `<span class='score__row'>${k} ${v}</span>` }
 
 	}
+
+
 }
 
 
@@ -137,12 +142,19 @@ const checkUser = ()=>{
 
 			modalForm.addEventListener('submit',(e)=>{
 
-			e.preventDefault()
+				e.preventDefault()
 
 				if(e.target.user.value.trim().length > 0){
 					setSessionStorage('current', e.target.user.value) 
+
+					userDiv.classList.remove('undisplay')
+
+					userDiv.children.userName.innerHTML = e.target.user.value
+
 					modal.remove()
 					setScore()
+
+					play.classList.remove('undisplay')
 				}
 
 			})
@@ -152,15 +164,25 @@ const checkUser = ()=>{
 		})
 
 
+	}else{
+		userDiv.classList.remove('undisplay')
+		userDiv.children.userName.innerHTML = getSessionStorage('current')
+		play.classList.remove('undisplay')
 	}
-
+		
 	setScore()
-
 }
 
 
 const logout = ()=>{
 	sessionStorage.removeItem('current');
+	mode = 0
+	userSay = []
+	simonSay = []
+	timer = 600
+	play.classList.add('undisplay')
+	userDiv.classList.add('undisplay')
+	checkUser()
 }
 
 
@@ -169,10 +191,10 @@ simon.addEventListener("click",(e)=>{
 
 	if(e.target.tagName != 'BUTTON' || mode !== 2) return
 
-	if(e.target.id === 'part-1'){userSay.push(1); audio(170,300)}
-	else if(e.target.id === 'part-2'){userSay.push(2); audio(340,300)}
-	else if(e.target.id === 'part-3'){userSay.push(3); audio(510,300)}
-	else if(e.target.id === 'part-4'){userSay.push(4); audio(680,300)}
+	if(e.target.id === 'part-1'){userSay.push(1); audio(170,200)}
+	else if(e.target.id === 'part-2'){userSay.push(2); audio(340,200)}
+	else if(e.target.id === 'part-3'){userSay.push(3); audio(510,200)}
+	else if(e.target.id === 'part-4'){userSay.push(4); audio(680,200)}
 
 
 	const last = (userSay.length - 1)
@@ -192,9 +214,9 @@ simon.addEventListener("click",(e)=>{
 
 	if(userSay.length == simonSay.length){
 
-		newTimer = timer - (simonSay.length * 8) 
+		newTimer = timer - (simonSay.length * 6) 
 
-		if(newTimer > 80){timer = newTimer} 			
+		if(newTimer > 100){timer = newTimer} 			
 
 		mode = 1
 		mssg.textContent = '...'
@@ -204,9 +226,6 @@ simon.addEventListener("click",(e)=>{
 
 
 })
-
-
-
 
 play.addEventListener("click",()=>{
 	
@@ -221,5 +240,7 @@ play.addEventListener("click",()=>{
 
 })
 
+
+user.children.outBtn.addEventListener('click',logout)
 
 checkUser()

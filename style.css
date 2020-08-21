@@ -189,3 +189,21 @@
 .rotate{
   transform: rotate(360deg);
 }
+
+.name{
+  display: inline;
+  color:#eee;
+  font-weight: bolder;
+  margin:.7rem;
+}
+
+.out{
+  display: inline;
+  color: #66a;
+}
+
+.user{
+  position: fixed;
+  top: 1.5rem;
+  right: 1rem;
+}
