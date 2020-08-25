@@ -1,0 +1,48 @@
+.modalContainer{
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.6);
+  width: 100vw;
+  height: 100vh;
+  z-index: 150;
+  align-items: center;
+  overflow-y:scroll;
+}
+
+.modal{
+  display: block;
+  position: relative;
+  background: #fff;
+  padding: 2rem;
+  margin:auto;
+  z-index: 151;
+}
+
+.modal__legend{
+  text-align: center;
+  display: block;
+  margin: 1rem 0;
+  font-size: 1.3rem;
+  font-weight: bolder;
+}
+
+.modal__form{
+  display: flex;
+  align-items: center;
+  padding: .2rem;
+}
+
+.modal__input{
+  font-family: inherit; 
+  font-size: 100%; 
+  line-height: 1.15;
+  display: inline-block;
+  height:2rem;
+  border:1px solid #666;
+  padding: .4rem .2rem;
+  margin: .3rem;
+  border-radius: 3px;
+  outline: none;
+}
