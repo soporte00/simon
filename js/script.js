@@ -5,12 +5,13 @@ const score = document.getElementById('score')
 const points = document.getElementById('points')
 const user = document.getElementById('userDiv')
 
+
+let abort = false
 let simonSay = []
 let userSay = []
 let mode = 0
 
 let rand = ()=> {return Math.floor(Math.random() * 4) + 1;}
-
 
 
 let timer = 600;
@@ -48,7 +49,7 @@ const light = (number)=>{
 
 
 const showLights = async ()=>{
-	for(const part of simonSay){await light(part); }
+	for(const part of simonSay){ if(abort){return} await light(part); }
 	mode = 2
 	mssg.textContent = '¡¡Ahora es tu turno!!'
 }
@@ -58,8 +59,7 @@ const presentation = async ()=>{
 	mem = timer
 	timer = 80
 	mssg.textContent = 'Ponte alerta!!'
-	for(const part of [4,2,3,2,1,4]){await light(part); 
-	}
+	for(const part of [4,2,3,2,1,4]){ if(abort){return} await light(part); }
 	timer = mem
 }
 
@@ -182,6 +182,7 @@ const checkUser = ()=>{
 
 
 const logout = ()=>{
+	abort = true
 	sessionStorage.removeItem('current');
 	mode = 0
 	userSay = []
@@ -239,6 +240,7 @@ simon.addEventListener("click",(e)=>{
 play.addEventListener("click",()=>{
 	
 	points.textContent = '0'
+	abort = false
 
 	presentation()
 	.then(()=>{
