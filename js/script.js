@@ -106,8 +106,6 @@ const setScore = (set = null)=>{
 		storage(data)	
 	}
 
-	score.innerHTML = ''
-	
 
 	// order score
 
@@ -191,6 +189,8 @@ const logout = ()=>{
 	timer = 600
 	play.classList.add('undisplay')
 	userDiv.classList.add('undisplay')
+	mssg.textContent =''
+	points.textContent = 0
 	checkUser()
 }
 
