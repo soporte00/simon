@@ -35,9 +35,6 @@
 }
 
 .modal__input{
-  font-family: inherit; 
-  font-size: 100%; 
-  line-height: 1.15;
   display: inline-block;
   height:2rem;
   border:1px solid #666;
