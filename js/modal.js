@@ -14,7 +14,7 @@ function modal(){
 			</form>
 		</div>`;
 
-		return resolve(modalContainer);
+		resolve(modalContainer);
 	});
 
 }
