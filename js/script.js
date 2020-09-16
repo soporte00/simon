@@ -59,6 +59,7 @@ const presentation = async ()=>{
 	mem = timer
 	timer = 80
 	mssg.textContent = 'Ponte alerta!!'
+	simon.classList.toggle('rotate')
 	for(const part of [4,2,3,2,1,4]){ if(abort){return} await light(part); }
 	timer = mem
 }
