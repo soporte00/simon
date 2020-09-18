@@ -10,9 +10,19 @@
 	<title>Simon</title>
 </head>
 <body>
+<div id='modal' class='modalContainer hidden'>
+	<div class='modal'>
+	<legend class='modal__legend'>Dime tu nombre antes de jugar ;)</legend>
+	<form class='modal__form' id='modalForm'>
+		<input class='modal__input' type='text' id='user' placeholder='Ingrese su nombre'>
+		<input class='modal__input' type='submit' value='Continuar'>
+	</form>
+	</div>
+</div>	
+
 <header>
 	<h1>Simon Dice...</h1>
-	<div id='userDiv' class='user undisplay'><span id='userName' class='name'></span><a href='#' id='outBtn' class='out'>Salir</a></div>
+	<div id='userDiv' class='user hidden'><span id='userName' class='name'></span><a href='#' id='outBtn' class='out'>Salir</a></div>
 </header>
 <main id='main'>
 	<span id='mssg' class='messageContainer'></span>
@@ -24,14 +34,13 @@
 		<span id='points' class='points'></span>
 	</div>
 
-	<button id='play' class='btn undisplay'>Jugar</button>
+	<button id='play' class='btn hidden'>Jugar</button>
 </main>
 
 <aside> Posiciones: 
 	<div class='score' id='score'></div>
 </aside>
 
-<script src="js/modal.js"></script>
 <script src="js/storage.js"></script>
 <script src="js/script.js"></script>
 </body>

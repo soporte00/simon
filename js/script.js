@@ -4,7 +4,7 @@ const play = document.getElementById('play')
 const score = document.getElementById('score')
 const points = document.getElementById('points')
 const user = document.getElementById('userDiv')
-
+const modal = document.getElementById('modal')
 
 let abort = false
 let simonSay = []
@@ -60,7 +60,7 @@ const presentation = async ()=>{
 	timer = 80
 	mssg.textContent = 'Ponte alerta!!'
 	simon.classList.toggle('rotate')
-	for(const part of [4,2,3,2,1,4]){ if(abort){return} await light(part); }
+	for(const part of [4,2,3,2]){ if(abort){return} await light(part); }
 	timer = mem
 }
 
@@ -109,7 +109,7 @@ const setScore = (set = null)=>{
 
 
 	// order score
-
+	
 	let fragment = document.createDocumentFragment()
 
 	n = 0
@@ -143,39 +143,32 @@ const checkUser = ()=>{
 
 	if(!getSessionStorage('current')){
 
-		modal()
-		.then((modal)=>{
+		modal.classList.remove('hidden')
+		const modalForm  = document.getElementById('modalForm')
+		modalForm.addEventListener('submit',(e)=>{
+			e.preventDefault()
 
-			const modalForm  = document.getElementById('modalForm')
+			if(e.target.user.value.trim().length > 0){
+				setSessionStorage('current', e.target.user.value) 
 
-			modalForm.addEventListener('submit',(e)=>{
+				userDiv.classList.remove('hidden')
 
-				e.preventDefault()
+				userDiv.children.userName.innerHTML = e.target.user.value
 
-				if(e.target.user.value.trim().length > 0){
-					setSessionStorage('current', e.target.user.value) 
+				modal.classList.add('hidden')
+				setScore()
 
-					userDiv.classList.remove('undisplay')
+				play.classList.remove('hidden')
+			}
 
-					userDiv.children.userName.innerHTML = e.target.user.value
-
-					modal.remove()
-					setScore()
-
-					play.classList.remove('undisplay')
-				}
-
-			})
-
-
-
+			e.target.user.value = '';
 		})
 
 
 	}else{
-		userDiv.classList.remove('undisplay')
+		userDiv.classList.remove('hidden')
 		userDiv.children.userName.innerHTML = getSessionStorage('current')
-		play.classList.remove('undisplay')
+		play.classList.remove('hidden')
 	}
 		
 	setScore()
@@ -189,8 +182,8 @@ const logout = ()=>{
 	userSay = []
 	simonSay = []
 	timer = 600
-	play.classList.add('undisplay')
-	userDiv.classList.add('undisplay')
+	play.classList.add('hidden')
+	userDiv.classList.add('hidden')
 	mssg.textContent =''
 	points.textContent = 0
 	checkUser()
@@ -218,7 +211,7 @@ simon.addEventListener("click",(e)=>{
 		simonSay = []
 		timer = 600
 		simon.classList.toggle('rotate')
-		play.classList.remove('undisplay')
+		play.classList.remove('hidden')
 		return
 	}
 
@@ -245,14 +238,12 @@ play.addEventListener("click",()=>{
 
 	presentation()
 	.then(()=>{
-		play.classList.add('undisplay')
+		play.classList.add('hidden')
 		mssg.textContent = '...'
 		setTimeout(nextStage,700)
 	})
 
 })
 
-
 user.children.outBtn.addEventListener('click',logout)
-
 checkUser()
